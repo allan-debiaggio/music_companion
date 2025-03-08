@@ -10,6 +10,6 @@ the same, don't follow each other)
 - Maybe one natural and one accidental for the list, with changing order
 
 ## Goals : 
-1.0 : Terminal Version
-2.0 : Pygame Version
-3.0 : More features (Maybe an included metronome), Multiple languages (dictionaries)
+1.0 : Terminal Version  
+2.0 : Pygame Version  
+3.0 : More features (Maybe an included metronome), Multiple languages (dictionaries)  
