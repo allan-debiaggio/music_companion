@@ -58,7 +58,7 @@ def rand_all():
         if notes[index] in random_notes :
             continue
         else :
-            random_notes += notes[index]
+            random_notes.append(notes[index])
     return random_notes
 
 main()
