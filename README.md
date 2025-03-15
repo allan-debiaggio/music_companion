@@ -1,5 +1,5 @@
 # Music Companion
-
+***
 Program that generates a random music key or string of keys. Can be on a random string or all at once.
 
 - Menu where you choose between the list and a random key , or a random key on a random string.
