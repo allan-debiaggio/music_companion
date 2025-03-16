@@ -5,24 +5,42 @@ Implement a program that :
 - Accidentals are all there, even the same ones, but don't follow themselves (e.g. : G# and Ab, which are the
 same, don't follow themselves)
 - Maybe one natural and one accidental for the list, with changing order
+- Need to implement menu and submenu to abstract all the conditions in main and the calling of other functions
 """
 import random
 
 def main() :
     
-    print("Hello and welcome to the Music Companion !\n"\
+    print("Hello and welcome to Music Companion !\n"\
           "Press Ctrl + C to quit the program. Have fun practising ! :D")
     
     while True : 
         try :
-            user = int(input("Choose an option :\n"  \
-                        "1 for a random list of naturals / sharps / flats\n" \
+            choice = int(input("Choose an option :\n"  \
+                        "1 for a random list of naturals / flats / sharps\n" \
                         "2 for a random list of all notes altogether\n"
                         ))
-            if user == 1 :
-                print(rand_list())
-            elif user == 2 : 
+            if choice == 1 :
+                choice2 = int(input("Choose an option :\n"
+                "1 for Naturals\n"
+                "2 for Flats\n"
+                "3 for Sharps\n"))
+                if choice2 == 1 :
+                    selected_notes, number = notes_selection(choice2)
+                    print(rand_list(selected_notes, number))
+                elif choice2 == 2 :
+                    selected_notes, number = notes_selection(choice2)
+                    print(rand_list(selected_notes, number))
+                elif choice2 == 3 :
+                    selected_notes, number = notes_selection(choice2) 
+                    print(rand_list(selected_notes, number))
+                else : 
+                    print("I didn't understand your request. Can you repeat, please ?")
+            elif choice == 2 : 
                 print(rand_all())
+            else :
+                print("Enter a valid selection number, please.\n")
+
         except ValueError : 
             print("What's that ? I didn't understand your request. Can you repeat, please ?\n")
         except KeyboardInterrupt :
@@ -32,20 +50,37 @@ def main() :
 
 
 
-def rand_list() :
-    """ Function where you can get separated list of naturals / sharps / flats """
-    
+def notes_selection(choice2):
+    """
+    Function used to choose a list of notes between Naturals, Flats or Sharps; then return the list of notes
+    and its length as an integer
+    """
     naturals = ["A","B","C","D","E","F","G"]
-    sharps = ["A#","C#","D#","F#","G#"]
     flats = ["Ab","Bb","Db","Eb","Gb"]
+    sharps = ["A#","C#","D#","F#","G#"]
+
+    if choice2 == 1 :
+        return naturals, 7
+    elif choice2 == 2 : 
+        return flats, 5
+    else :
+        return sharps, 5    
+
+
+
+def rand_list(selected_notes, number) :
+    """ Function where you can get a random list of naturals OR sharps OR flats  
+    'number' is used to dynamically adapt the length of the list, as there are 7 naturals, 5 sharps and 5 flats
+    """
+
     random_notes = []
 
-    while len(random_notes) < 7 :
-        index = random.randint(0,len(naturals)-1) # Getting index of random note from naturals
-        if naturals[index] in random_notes : # If the note is already in the list, keep generating
+    while len(random_notes) < number :
+        index = random.randint(0,len(selected_notes)-1) # Getting index of random note from naturals
+        if selected_notes[index] in random_notes : # If the note is already in the list, keep generating
             continue
         else :
-            random_notes += (naturals[index])
+            random_notes.append(selected_notes[index])
 
     return random_notes
 
@@ -101,6 +136,15 @@ def check_same_notes(notes_list) :
         return True
     else :
         return False
+
+
+
+def notes_letter(notes_list):
+    """
+    Function to check whether or not the last two entries of the list are the same letters
+    TO DO
+    """
+
 
 
 main()
