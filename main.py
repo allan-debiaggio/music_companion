@@ -111,10 +111,9 @@ def rand_all():
 
         if notes[index] in random_notes :
             continue
-        elif check_same_notes(random_notes) :
-            continue
         else :
             random_notes.append(notes[index]) # Add the whole note to the list (not just 1st character)
+            
     return random_notes
 
 
@@ -132,10 +131,12 @@ def check_same_notes(notes_list) :
         "C#, Db", "Db, C#"
         "D#, Eb", "Eb, D#"]
     
-    if same_notes in notes_list :
-        return True
-    else :
-        return False
+    try : 
+        last_note = notes_list[-1]
+    except IndexError :
+        return None
+    
+    return last_note
 
 
 
@@ -144,7 +145,17 @@ def notes_letter(notes_list):
     Function to check whether or not the last two entries of the list are the same letters
     TO DO
     """
+    
+def rand_string() :
+    """
+    Function that selects a random string to play on.
+    """
 
+    strings = ["E","A","D","G","B","E"]
+
+    index = random.randint(0, len(strings)-1)
+
+    return strings[index]
 
 
 main()
