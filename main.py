@@ -15,7 +15,7 @@ def main() :
           "Press Ctrl + C to quit the program. Have fun practising ! :D")
     
     while True : 
-        try :
+        try :   
             choice = int(input("Choose an option :\n"  \
                         "1 for a random list of naturals / flats / sharps\n" \
                         "2 for a random list of all notes altogether\n"
@@ -45,15 +45,46 @@ def main() :
             print("What's that ? I didn't understand your request. Can you repeat, please ?\n")
         except KeyboardInterrupt :
             print("\nQuitting the program...\n"\
-             "Goodbye ! :D")
+                "Goodbye ! :D")
             break
+    
+
+
+# def string_menu() :
+#     choice = int(input("Choose between :\n"   \
+#                 "1 for doing an exercise on a specific string\n"   \
+#                 "2 for doing an exercise on all the strings\n"))
+#     if choice == 1 : 
+#         one_string = True
+#     elif choice == 2 :
+#         one_string = False
+#     else : 
+#         print("Enter a valid selection number, please.\n")
+#     return one_string
+
+
+
+# def list_menu() :
+#     choice = int(input("Choose between :\n"   \
+#         "1 for a random list of Naturals, Flats or Sharps\n"   \
+#         "2 for a random list of all notes altogether\n"))
+#     if choice == 1 :
+#         choice = int(input("Choose between :\n"   \
+#         "1 for Naturals\n"  \
+#         "2 for Flats\n"  \
+#         "3 for Sharps\n"))
+#         return choice
+#     elif choice == 2 :
+#         return print(rand_all())
+#     else :
+#         print("Enter a valid selection number, please.\n")
 
 
 
 def notes_selection(choice2):
     """
-    Function used to choose a list of notes between Naturals, Flats or Sharps; then return the list of notes
-    and its length as an integer
+    Choose a list of notes between Naturals, Flats or Sharps;  
+    Then return the list of notes and its length as an integer
     """
     naturals = ["A","B","C","D","E","F","G"]
     flats = ["Ab","Bb","Db","Eb","Gb"]
@@ -69,7 +100,7 @@ def notes_selection(choice2):
 
 
 def rand_list(selected_notes, number) :
-    """ Function where you can get a random list of naturals OR sharps OR flats  
+    """ Gives a random list of naturals OR sharps OR flats  
     'number' is used to dynamically adapt the length of the list, as there are 7 naturals, 5 sharps and 5 flats
     """
 
@@ -88,11 +119,16 @@ def rand_list(selected_notes, number) :
 
 def rand_all():
     """
-    Function where you can get a string of all notes combined  
+    Gives a string of all notes combined  
     TO DO : Need to make sure the same notes don't follow themselves  
-    Idea : Create a list where to put same notes,  
-    If combo in list then throw another rand,  
-    Elif same letter in note that follows, throw another rand
+    Break the problem :
+    A number between 0 and 16 is generated (i.e : 3 / Bb)
+    Program check if random_notes is empty
+    if true, add note
+    if false :
+    check if the last entry - new rand < 2
+    if true : continue
+    else add number
     """
 
     notes = [
@@ -108,11 +144,14 @@ def rand_all():
 
     while len(random_notes) < 17 :
         index = random.randint(0, len(notes)-1)
-
+        
         if notes[index] in random_notes :
             continue
+        # elif len(random_notes) != 0 and last_index != None and index - last_index < 2 :
+        #     continue
         else :
             random_notes.append(notes[index]) # Add the whole note to the list (not just 1st character)
+            # last_index = index
             
     return random_notes
 
@@ -120,7 +159,7 @@ def rand_all():
 
 def check_same_notes(notes_list) :
     """
-    Function to check wheter or not the list contains two same notes following each other  
+    Check wheter or not the list contains two same notes following each other  
     NOT WORKING COMPLETELY
     """
 
@@ -130,25 +169,19 @@ def check_same_notes(notes_list) :
         "A#, Bb", "Bb, A#"
         "C#, Db", "Db, C#"
         "D#, Eb", "Eb, D#"]
-    
-    try : 
-        last_note = notes_list[-1]
-    except IndexError :
-        return None
-    
-    return last_note
+
 
 
 
 def notes_letter(notes_list):
     """
-    Function to check whether or not the last two entries of the list are the same letters
+    Check whether or not the last two entries of the list are the same letters
     TO DO
     """
     
 def rand_string() :
     """
-    Function that selects a random string to play on.
+    Selects a random string to play on.
     """
 
     strings = ["E","A","D","G","B","E"]
